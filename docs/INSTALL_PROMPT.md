@@ -5,6 +5,8 @@ https://raw.githubusercontent.com/smallgreen-cloud/petmcp-sites/7a5f09461f308528
 
 請依契約，把公開來源 https://github.com/smallgreen-cloud/petmcp-sites 的 commit ed20ee8fbda440a7f1b44007528394b726ae4f62 部署成我自己的私人 PetMCP ChatGPT Site。
 
+runtime source commit 與安裝契約 commit 分開鎖定。取得 runtime source 並核對版本後，若該快照尚無 `.smallgreen/install.yaml`，請在私人工作目錄保存上方鎖定契約的原文，再進行契約／conformance 檢查；不要改寫來源 SHA 或自行編造契約。保存最終 Sites source commit 時，另外記錄它與公開 runtime 的差異僅為安裝 metadata 及本人 Site 身分。
+
 只使用 ChatGPT Work / Sites 原生託管、登入、D1、R2 與個人 MCP。先核對我的帳號有 Sites 權限、來源與 MIT 授權；無權限就停止並說明，不可改用獨立 Cloudflare、BYOC、外部 API Key、Groq、OTP 或共享後端。公開模板沒有 project_id；新 Site 保存平台實際回傳的 ID；既有 Site 先核對身分再重用，不重複建立。
 
 請依 Sites skill 保存精確來源、建置、原生部署並等 terminal 結果。完成後給我自己的 Site URL 與個人插件連線步驟。用合成資料逐項驗證：建寵物、原始血檢 1.20 mg/dL 與日期、MCP 讀回、PWA 顯示、修正為 1.30、原值稽核、照片授權、匯出與空白帳號還原。照片先辨識草稿給我核對，再寫入；食品標籤不能當成已餵食。
