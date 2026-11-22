@@ -1,0 +1,274 @@
+{
+  "report_type": "candidate_validation_not_smallgreen_ready",
+  "observed_date": "2026-11-22",
+  "supersedes_status_of": "2026-11-22-final-acceptance.json",
+  "source": {
+    "repository": "smallgreen-cloud/petmcp-sites",
+    "commit": "ed20ee8fbda440a7f1b44007528394b726ae4f62",
+    "license": "MIT",
+    "runtime_files_matched": 33,
+    "runtime_tree_sha256": "8960e3c222eecfeee2a9ce7194dcace5c2c0da0297a163f83887ef14d9511b5f"
+  },
+  "deployment": {
+    "status": "pass",
+    "mechanism": "native Sites save_version_and_deploy_private then get_deployment_status",
+    "terminal_state": "succeeded",
+    "site_version": 1,
+    "owner_private": true,
+    "has_mcp": true,
+    "observed_at": "2026-11-22T12:27:01.433493+00:00",
+    "private_identifiers": "omitted from public evidence"
+  },
+  "local": {
+    "tests": 11,
+    "passed": 11,
+    "line_coverage": 99.13,
+    "branch_coverage": 85.28,
+    "function_coverage": 95.59,
+    "artifact": "local-runtime-tests.txt",
+    "scope": "SQLite adapter plus memory object storage, not live platform auth"
+  },
+  "ci": {
+    "petmcp": {
+      "status": "pass",
+      "commit": "413333c46b03527598dd91fde6d34f4808ea5557",
+      "url": "https://github.com/smallgreen-cloud/petmcp-sites/actions/runs/45038702755"
+    },
+    "registry": {
+      "status": "pass",
+      "commit": "0f4878efdc5449b144928fbe6ec5e59b71f17ff1",
+      "url": "https://github.com/smallgreen-cloud/registry/actions/runs/45036983643"
+    },
+    "website": {
+      "status": "pass",
+      "commit": "b8f2d631920ac3c295399cf2f98f4a4e48f3e217",
+      "url": "https://github.com/smallgreen-cloud/site/actions/runs/45036989847"
+    },
+    "scope": "These are completed runtime/renderer checks preceding this evidence update; inspect GitHub for the evidence commit's subsequent CI."
+  },
+  "public_delivery": {
+    "repository": "https://github.com/smallgreen-cloud/petmcp-sites",
+    "license": "MIT",
+    "registry_state": "evidence-needed",
+    "site": "https://smallgreen.cooperation.tw/zh-tw/services/petmcp-sites/",
+    "site_http": 200,
+    "install_json": "https://smallgreen.cooperation.tw/services/petmcp-sites/install.json",
+    "install_json_http": 200,
+    "copy_prompt_button": "pass: real click changed label to 已複製",
+    "deployment_ready": false
+  },
+  "live_mcp": {
+    "surface": "authenticated Sites personal plugin in Codex",
+    "initial_empty_read": "pass",
+    "create_pet": "pass",
+    "lab_raw_write_read": {
+      "status": "pass",
+      "original": "1.20",
+      "unit": "mg/dL",
+      "date": "2026-11-22"
+    },
+    "correction": {
+      "status": "pass",
+      "updated": "1.30",
+      "revision": 2,
+      "original_preserved_in_audit": true
+    },
+    "care": "pass",
+    "food_label_without_pet_or_consumption_relation": "pass",
+    "export": {
+      "status": "pass",
+      "records": 4,
+      "photos": 0,
+      "audit": 5
+    },
+    "purge_synthetic_data": {
+      "status": "pass",
+      "read_back_empty": true
+    },
+    "restore_to_empty_account": {
+      "status": "pass",
+      "passed": true,
+      "records": 4,
+      "audit": 5,
+      "attachments": 0,
+      "exported_at": "2026-11-22T15:09:40.941Z"
+    },
+    "fixture_data": "synthetic only; restored fixtures retained for subsequent UI/mobile acceptance"
+  },
+  "browser": {
+    "login": "pass: existing owner authenticated through native ChatGPT sign-in",
+    "health": "pass: authenticated /health returned HTTP 200",
+    "write_correction_readback": "pass: original synthetic report corrected to raw 1.30 mg/dL, revision 2",
+    "unsigned_records_request": "pass: /api/records HTTP 401 without credentials",
+    "responsive_widths": [
+      375,
+      768,
+      1280
+    ],
+    "horizontal_overflow_css_px": 0,
+    "scope": "Ego Chromium desktop emulation only; not physical Android or installed-PWA evidence",
+    "screenshots": [
+      "pwa-desktop-synthetic.png",
+      "pwa-confirmed-photo-report.png",
+      "pwa-photo-report-375.png"
+    ]
+  },
+  "photo": {
+    "status": "pass",
+    "scope": "PWA plus native Sites personal plugin exercised by the Codex assistant; mobile ChatGPT client and Voice not tested",
+    "fixture": "synthetic LUNA (FICTIONAL), 2026-09-14, Demo Lab North; reused existing PetMCP v1.3 generated sample",
+    "fixture_artifact": "synthetic-blood-report.png",
+    "mime": "image/png",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 185703,
+    "sha256": "76bd035961f998f8f93ee22b717900c70a55b9801f114f162fbedfd298a301bd",
+    "pwa_upload": "pass",
+    "authorized_mcp_image_retrieval": "pass: actual image content block inspected",
+    "ai_transcription": "pass: eight original measurements and units matched the synthetic report",
+    "human_confirmation": "pass: user explicitly confirmed the synthetic draft before writing",
+    "saved_measurements": [
+      {
+        "analyte": "ALT",
+        "raw_value": "68",
+        "unit": "U/L",
+        "reference_text": "12–130"
+      },
+      {
+        "analyte": "ALP",
+        "raw_value": "31",
+        "unit": "U/L",
+        "reference_text": "10–90"
+      },
+      {
+        "analyte": "BUN",
+        "raw_value": "28",
+        "unit": "mg/dL",
+        "reference_text": "16–36"
+      },
+      {
+        "analyte": "CREA",
+        "raw_value": "1.6",
+        "unit": "mg/dL",
+        "reference_text": "0.8–2.4"
+      },
+      {
+        "analyte": "SDMA",
+        "raw_value": "13",
+        "unit": "µg/dL",
+        "reference_text": "0–14"
+      },
+      {
+        "analyte": "PHOS",
+        "raw_value": "4.8",
+        "unit": "mg/dL",
+        "reference_text": "3.1–7.5"
+      },
+      {
+        "analyte": "GLU",
+        "raw_value": "122",
+        "unit": "mg/dL",
+        "reference_text": "70–150"
+      },
+      {
+        "analyte": "TP",
+        "raw_value": "7.1",
+        "unit": "g/dL",
+        "reference_text": "5.7–8.9"
+      }
+    ],
+    "saved_date": "2026-09-14",
+    "mcp_readback": "pass",
+    "pwa_readback": "pass: all eight values, original units, date and original-image link",
+    "downloaded_original_equals_fixture": "pass: byte-for-byte comparison",
+    "pwa_backup": {
+      "status": "pass",
+      "records": 6,
+      "photos": 1,
+      "audit": 7,
+      "bytes": 259702,
+      "photo_bytes_equal_fixture": true,
+      "exported_at": "2026-11-22T15:24:01.129Z",
+      "backup_contents": "Kept locally outside the public repository; no owner identifiers in public evidence"
+    },
+    "live_backup_restore": {
+      "status": "pass",
+      "user_authorization": "Explicit approval to purge exactly 6 synthetic records, 1 synthetic photo and 7 audit events, then immediately restore; Site retained",
+      "pre_purge_frozen_backup_check": "All records, attachments and audit matched approved snapshot",
+      "purge_readback": {
+        "records": 0,
+        "attachments": 0,
+        "audit": 0
+      },
+      "restore": {
+        "records": true,
+        "attachments": true,
+        "audit": true,
+        "records_count": 6,
+        "photos_count": 1,
+        "audit_count": 7,
+        "exported_at": "2026-11-22T15:32:28.275Z",
+        "pass": true
+      },
+      "restored_pwa_readback": "pass: LUNA, 2026-09-14 and all eight original measurements",
+      "restored_photo_http": 200,
+      "restored_photo_bytes": 185703,
+      "restored_photo_sha256": "76bd035961f998f8f93ee22b717900c70a55b9801f114f162fbedfd298a301bd",
+      "restored_photo_equals_original": true,
+      "scope": "Same owner-private Site emptied and restored; not a second-account migration or platform teardown"
+    }
+  },
+  "conformance": {
+    "install_schema": "pass",
+    "profile_acceptance_maintenance_schemas": "pass",
+    "sites_manifest_and_external_infrastructure_guard": "pass",
+    "legacy_check_profile": {
+      "result": "fail",
+      "codes": [
+        "SAP-1",
+        "SAP-2"
+      ],
+      "reason": "Existing checker requires wrangler configuration; Sites-only uses .openai/hosting.json"
+    },
+    "legacy_check_secrets_manifest": {
+      "result": "fail",
+      "codes": [
+        "CON-3"
+      ],
+      "reason": "Existing checker does not recognise Sites DB/BUCKET; also scans starter build/connector bindings"
+    },
+    "ready": false
+  },
+  "remaining": [
+    {
+      "id": "mobile-chatgpt-photo-tools",
+      "status": "not tested",
+      "reason": "Desktop Codex plugin acceptance does not establish mobile ChatGPT client behavior"
+    },
+    {
+      "id": "native-chatgpt-voice",
+      "status": "not tested"
+    },
+    {
+      "id": "android-install-reopen-update-permissions-session",
+      "status": "not tested"
+    },
+    {
+      "id": "second-real-account-isolation",
+      "status": "not tested",
+      "local_application_owner_isolation": "pass",
+      "unauthenticated_api_denial": "pass"
+    },
+    {
+      "id": "teardown-zero-diff",
+      "status": "blocked",
+      "reason": "Owner-private Site retained. Complete Site deletion needs explicit consent and observable Sites-managed resource cleanup; data purge is not resource teardown."
+    },
+    {
+      "id": "legacy-sites-conformance-support",
+      "status": "blocked",
+      "reason": "Legacy SAP-1/SAP-2 require Wrangler; CON-3 does not understand native Sites bindings. No independent Cloudflare resources added to satisfy these checks."
+    }
+  ],
+  "observed_at": "2026-11-22T15:32:28.275Z"
+}
