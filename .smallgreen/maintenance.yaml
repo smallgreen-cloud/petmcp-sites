@@ -1,0 +1,27 @@
+schema_version: 0.3.0
+update:
+  strategy: manual
+  upstream_check: 核對公開 GitHub commit、CI 與 release 說明
+  preview_before_promote: true
+backup:
+  targets:
+  - d1
+  - r2
+  method: PWA 照片與備份 → 下載完整備份；確認 records、attachments、audit，詳 docs/MAINTENANCE.md
+  frequency_hint: 重要寫入與更新前由使用者手動匯出
+restore:
+  method: 只在空白個人帳號匯入同頁 JSON 備份，逐筆與圖片位元組核對
+uninstall:
+  steps:
+  - 明確確認指定 Site 身分與刪除意願
+  - 先匯出並驗證可還原備份
+  - 透過原生 Sites 移除指定 Site 並撤銷個人 plugin
+  - 讀回受管資源清單與部署前基線作 zero-diff；平台不可觀測時 blocked
+  data_export_first: true
+quota_watchdog:
+  watch:
+  - resource: ChatGPT Sites and native AI allowance
+    free_limit: 依目前 ChatGPT 方案與帳號官方顯示，不保證免費帳號可建立
+    check_method: 使用者於 ChatGPT 帳號方案與用量介面核對；此版無排程 watchdog
+    alert_threshold: 寫入失敗即在 PWA/MCP 明確回報
+  none_reason: 無排程背景工作；未提供無人值守 runtime 監控

@@ -1,0 +1,26 @@
+schema_version: 0.3.0
+health:
+  path: /health
+  expect_status: 200
+  expect_body_contains: petmcp-sites
+smoke:
+- name: Authenticated Sites health
+  steps:
+  - action: http_request
+    params:
+      method: GET
+      path: /health
+      auth: Sites owner session
+  expect:
+    status: 200
+    body_contains: ok
+user_acceptance:
+- task: 合成寵物與原始血檢 1.20 mg/dL 經 MCP 寫入、PWA 讀回、改為 1.30 後再讀回
+  success_looks_like: 日期與原始單位保存，修正前 1.20 留在稽核
+- task: 上傳照片、MCP 授權讀圖、ChatGPT 辨識、人核對、存檔
+  success_looks_like: 照片與原值可核對，未授權帳號遭拒
+- task: 以 Android Chrome 安裝自己的 Site，測試 Voice、備份還原與 teardown
+  success_looks_like: 各項實機 evidence 各自保存，不以發布成功代替
+uninstall_check:
+  resource_zero_diff: true
+  excluded_resources: []

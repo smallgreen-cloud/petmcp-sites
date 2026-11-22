@@ -1,0 +1,39 @@
+
+> petmcp-sites@0.1.0 test
+> node --experimental-test-coverage --test-coverage-lines=80 --test-coverage-branches=80 --test-coverage-functions=80 --test tests/*.test.mjs
+
+(node:76123) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ confirmed writes, idempotency and raw lab values survive reads (22.954625ms)
+✔ all object access is owner-scoped, including foreign keys and audit (2.905042ms)
+✔ food labels never infer consumption; invalid dates, units and owner fields fail (6.608666ms)
+✔ corrections preserve immutable audit; stale revisions fail; related pet cannot be deleted (6.640458ms)
+✔ care records, pagination and invalid tool requests (2.547917ms)
+✔ HTTP fails closed without identity, cross origin, unsupported types and malformed JSON (38.893458ms)
+✔ MCP discovery, list, create/read and tool errors follow JSON-RPC (16.914917ms)
+✔ private upload, MIME checks, MCP image and attachment ownership (6.212ms)
+✔ export includes photos and audit; restore only into empty owner; purge removes all data (4.005667ms)
+✔ trend grouping never merges units, pets or nonnumeric / unknown-date values (3.105375ms)
+✔ invalid restore is rejected before any object or database writes (3.792208ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 338.7165
+ℹ start of coverage report
+ℹ --------------------------------------------------------------------
+ℹ file                | line % | branch % | funcs % | uncovered lines
+ℹ --------------------------------------------------------------------
+ℹ lib                 |        |          |         | 
+ℹ  pet-http.mjs       |  97.78 |    70.00 |  100.00 | 43
+ℹ  pet-service.mjs    |  99.01 |    87.38 |   94.29 | 20
+ℹ  pet-tools.mjs      | 100.00 |   100.00 |  100.00 | 
+ℹ  pet-trends.mjs     | 100.00 |    91.67 |   66.67 | 
+ℹ  pet-validation.mjs | 100.00 |    96.15 |  100.00 | 
+ℹ --------------------------------------------------------------------
+ℹ all files           |  99.13 |    85.28 |   95.59 | 
+ℹ --------------------------------------------------------------------
+ℹ end of coverage report

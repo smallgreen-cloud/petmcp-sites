@@ -1,0 +1,40 @@
+name: PetMCP Sites candidate
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: actions/checkout@v4
+        with:
+          repository: smallgreen-cloud/spec
+          ref: cafaf20db549920eb23c9cfd808268bbbca74668
+          path: .spec
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install PyYAML jsonschema
+      - run: python scripts/check-contracts.py --spec .spec
+      - name: Preserve verification artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-verification
+          path: evidence/
+      - name: Explicit failure alert
+        if: failure()
+        run: |
+          echo '::error title=PetMCP release blocked::Candidate checks failed. Do not publish as Ready. The maintainer must keep GitHub Actions failure email notifications enabled.'

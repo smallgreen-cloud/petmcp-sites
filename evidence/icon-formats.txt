@@ -1,0 +1,2 @@
+public/icon-192.png: PNG image data, 192 x 192, 8-bit/color RGBA, non-interlaced
+public/icon-512.png: PNG image data, 512 x 512, 8-bit/color RGBA, non-interlaced
