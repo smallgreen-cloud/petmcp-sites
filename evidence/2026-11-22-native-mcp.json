@@ -1,0 +1,134 @@
+{
+  "report_type": "candidate_validation_not_smallgreen_ready",
+  "observed_date": "2026-11-22",
+  "source": {
+    "repository": "smallgreen-cloud/petmcp-sites",
+    "commit": "ed20ee8fbda440a7f1b44007528394b726ae4f62",
+    "license": "MIT",
+    "runtime_files_matched": 33,
+    "runtime_tree_sha256": "8960e3c222eecfeee2a9ce7194dcace5c2c0da0297a163f83887ef14d9511b5f"
+  },
+  "deployment": {
+    "status": "pass",
+    "mechanism": "native Sites save_version_and_deploy_private then get_deployment_status",
+    "terminal_state": "succeeded",
+    "site_version": 1,
+    "owner_private": true,
+    "has_mcp": true,
+    "observed_at": "2026-11-22T12:27:01.433493+00:00",
+    "private_identifiers": "omitted from public evidence"
+  },
+  "local": {
+    "tests": 11,
+    "passed": 11,
+    "line_coverage": 99.13,
+    "branch_coverage": 85.28,
+    "function_coverage": 95.59,
+    "artifact": "local-runtime-tests.txt",
+    "scope": "SQLite adapter plus memory object storage, not live platform auth"
+  },
+  "ci": {
+    "status": "pass",
+    "url": "https://github.com/smallgreen-cloud/petmcp-sites/actions/runs/45013474875",
+    "commit": "a2ef28c38dc38ac64f43b641c8f7493cb5dacc28"
+  },
+  "live_mcp": {
+    "surface": "authenticated Sites personal plugin in Codex",
+    "initial_empty_read": "pass",
+    "create_pet": "pass",
+    "lab_raw_write_read": {
+      "status": "pass",
+      "original": "1.20",
+      "unit": "mg/dL",
+      "date": "2026-11-22"
+    },
+    "correction": {
+      "status": "pass",
+      "updated": "1.30",
+      "revision": 2,
+      "original_preserved_in_audit": true
+    },
+    "care": "pass",
+    "food_label_without_pet_or_consumption_relation": "pass",
+    "export": {
+      "status": "pass",
+      "records": 4,
+      "photos": 0,
+      "audit": 5
+    },
+    "purge_synthetic_data": {
+      "status": "pass",
+      "read_back_empty": true
+    },
+    "restore_to_empty_account": {
+      "status": "pass",
+      "passed": true,
+      "records": 4,
+      "audit": 5,
+      "attachments": 0,
+      "exported_at": "2026-11-22T15:09:40.941Z"
+    },
+    "fixture_data": "synthetic only; restored fixtures retained for subsequent UI/mobile acceptance"
+  },
+  "conformance": {
+    "install_schema": "pass",
+    "profile_acceptance_maintenance_schemas": "pass",
+    "sites_manifest_and_external_infrastructure_guard": "pass",
+    "legacy_check_profile": {
+      "result": "fail",
+      "codes": [
+        "SAP-1",
+        "SAP-2"
+      ],
+      "reason": "Existing checker requires wrangler configuration; Sites-only uses .openai/hosting.json"
+    },
+    "legacy_check_secrets_manifest": {
+      "result": "fail",
+      "codes": [
+        "CON-3"
+      ],
+      "reason": "Existing checker does not recognise Sites DB/BUCKET; also scans starter build/connector bindings"
+    },
+    "ready": false
+  },
+  "remaining": [
+    {
+      "id": "browser-login-pwa",
+      "status": "blocked",
+      "reason": "Authenticated browser acceptance task space disappeared during sign-in; user confirmation to start a new browser task space is pending"
+    },
+    {
+      "id": "photo-vision-roundtrip",
+      "status": "not tested",
+      "reason": "Requires PWA upload, authorized MCP image retrieval, ChatGPT vision draft and human review"
+    },
+    {
+      "id": "native-chatgpt-voice",
+      "status": "not tested"
+    },
+    {
+      "id": "android-install-reopen-update-permissions-session",
+      "status": "not tested"
+    },
+    {
+      "id": "second-real-account-isolation",
+      "status": "not tested",
+      "local_application_owner_isolation": "pass"
+    },
+    {
+      "id": "live-photo-backup-restore",
+      "status": "not tested",
+      "live_record_audit_restore": "pass",
+      "local_photo_bytes_restore": "pass"
+    },
+    {
+      "id": "teardown-zero-diff",
+      "status": "blocked",
+      "reason": "Personal Site retained; complete Site deletion requires explicit deletion consent and observable Sites-managed resource cleanup"
+    },
+    {
+      "id": "legacy-sites-conformance-support",
+      "status": "blocked"
+    }
+  ]
+}
