@@ -1,0 +1,116 @@
+schema_version: 0.1.0
+protocol: smallgreen-install/v1
+status: candidate
+target:
+  client: chatgpt-work
+  hosting: sites
+  execution_mode: native-sites
+trigger:
+  zh-tw: 依鎖定來源，在我的 ChatGPT Sites 建立私人 PetMCP，逐項驗收並列出未完成項目
+  en: Build my private PetMCP in ChatGPT Sites from the pinned source and report each
+    acceptance result.
+source:
+  repository: smallgreen-cloud/petmcp-sites
+  commit: ed20ee8fbda440a7f1b44007528394b726ae4f62
+  license: MIT
+hosting:
+  manifest: .openai/hosting.json
+  managed_resources:
+  - site
+  - d1
+  - r2
+  external_infrastructure: []
+interaction:
+  max_confirmations: 2
+  confirmations:
+  - id: create_private_site
+    reason: 首次建立或核對重用本人私人 Site，保留 owner-only audience
+  - id: synthetic_test
+    reason: 僅用合成資料測工具寫入與刪除；真實照片與手機權限由本人操作
+  generated_secrets: []
+  user_inputs: []
+steps:
+- id: capability
+  action: verify_capability
+  description: 確認本人帳號具有 Sites 建立權限與當前方案額度
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: source
+  action: verify_source
+  description: 核對公開來源 commit、MIT 與三階段驗收契約
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: private-site
+  action: create_or_reuse_site
+  description: 建立或核對重用 owner-private Site；保存 Sites 原始 project_id
+  requires_confirmation: true
+  document: docs/DEPLOY.md
+- id: dependencies
+  action: install_dependencies
+  description: 依鎖定 lockfile 建置；不要求使用者 CLI 登入
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: migrations
+  action: apply_migrations
+  description: 由 Sites 發布流程套用 Drizzle schema 遷移
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: publish
+  action: deploy
+  description: 以原生 Sites 保存精確 source commit 與 archive，部署私人版本
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: wait
+  action: wait_for_terminal_state
+  description: 等待 Sites terminal success 或 failure
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: health
+  action: verify_deployment
+  description: 確認登入後首頁、health、D1/R2/mcp 綁定
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: plugin
+  action: handoff_runtime_setup
+  description: 安裝 Sites 建立的個人 plugin；真實讀取工具驗收
+  requires_confirmation: false
+  document: docs/DEPLOY.md
+- id: operations
+  action: verify_operational_flow
+  description: 依 ACCEPTANCE.md 分別測寫讀修正、圖片、Voice、Android、備份還原與隔離
+  requires_confirmation: true
+  document: ACCEPTANCE.md
+acceptance:
+- id: private-health
+  stage: deployment
+  method: http
+  expected: Native Sites terminal success；本人登入後首頁與 /health HTTP 200
+  required: true
+- id: personal-plugin
+  stage: runtime-setup
+  method: workflow
+  expected: Sites 自動建立的個人 plugin 實際 discover/list/read；身份由平台傳入
+  required: true
+- id: record-roundtrip
+  stage: operational
+  method: workflow
+  expected: 合成寵物與血檢原值／單位／日期經 MCP 寫入，PWA 顯示，修正後再讀回與稽核
+  required: true
+- id: photo-voice-mobile
+  stage: operational
+  method: ui
+  expected: 照片授權讀取與 ChatGPT 辨識人工核對、原生 Voice、Android 安裝／返回／更新／照片權限／登入保持各自通過
+  required: true
+- id: privacy-portability
+  stage: operational
+  method: workflow
+  expected: 第二真實帳號拒絕存取；完整備份、空白帳號還原、資料刪除與 teardown zero-diff
+  required: true
+teardown:
+  document: docs/MAINTENANCE.md
+  requires_data_export: true
+blockers:
+- 尚未完成 Sites 個人 plugin 真實帳號端到端寫讀及第二帳號隔離
+- 照片到 ChatGPT Vision、原生 Voice、Android Chrome PWA 實機驗收待完成
+- Sites teardown 與受管資源 zero-diff 待平台能力與使用者明確移除同意
+- SmallGreen legacy Wrangler profile/secret scanner 尚未支援此 Sites-only 資源邊界
