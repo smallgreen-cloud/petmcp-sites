@@ -2,6 +2,8 @@
 
 狀態只能使用 pass / fail / blocked / not tested。每次保存實際 commit、時間、執行環境與非敏感結果到 evidence；未執行的步驟不得勾選成功。
 
+本人手機、原生 Voice、第二帳號與 teardown 的操作、通過條件與統一回報表集中在 [USER_ACCEPTANCE_CHECKLIST.md](docs/USER_ACCEPTANCE_CHECKLIST.md)。表內未操作項目保持未驗收；不重做已有證據的桌面流程。
+
 | 階段 | 操作與可核對結果 | 本機證據的範圍 |
 |---|---|---|
 | deployment | native Sites deploy terminal success；登入後首頁及 /health 200；DB/R2/mcp 正確宣告 | build 只證明可產生 artifact |
@@ -16,4 +18,6 @@
 | teardown | 原生 Sites 移除指定測試專案與個人 plugin，前後受管資源差異歸零 | 須有平台清單證據與刪除授權 |
 
 `npm test` 的 coverage gate：line / branch / function 均至少 80%。
-SmallGreen 舊 conformance 部分程式以 wrangler 資源為前提；不為了通過它新增獨立 Cloudflare 設定。契約 schema 與 Sites manifest 的本案閘門另存結果，legacy profile / secret scanner 如不支援 Sites，記錄 blocked，不降級規則或宣稱整套 conformance 通過。
+CI 釘選含 Sites-only 支援的 SmallGreen Spec 與 conformance，執行正式 SAP-1／SAP-2／CON-3。它們驗證原生 manifest 與安裝契約、空外部基礎設施、無獨立 Wrangler，以及 runtime bindings／secrets；本案額外的 Sites-only guard 仍保留。通過這三項不等於其他動態 requirements、手機、Voice 或 teardown 通過；舊版失敗報告保留當時狀態，新結果另存 evidence。不得新增獨立 Cloudflare 或 BYOC 來取得綠燈。
+
+最新靜態結果：[2026-11-23-sites-conformance.json](evidence/2026-11-23-sites-conformance.json)。

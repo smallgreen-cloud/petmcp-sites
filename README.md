@@ -18,7 +18,7 @@
 
 先建立寵物，再手動記錄或上傳照片。在 ChatGPT 安裝這個 Site 發布時建立的個人插件，請它讀取附件、提出草稿，核對後再寫入；回到 PWA 重新讀取。
 
-[手機首次設定](docs/MOBILE.md) · [驗收矩陣](ACCEPTANCE.md) · [備份與移除](docs/MAINTENANCE.md) · [安全邊界](SECURITY.md)
+[手機首次設定](docs/MOBILE.md) · [本人操作驗收清單](docs/USER_ACCEPTANCE_CHECKLIST.md) · [驗收矩陣](ACCEPTANCE.md) · [備份與移除](docs/MAINTENANCE.md) · [安全邊界](SECURITY.md)
 
 PWA 不內嵌 ChatGPT Live，不把照片或健康資料塞進聊天網址。不同寵物、不同原始單位不合併趨勢。紀錄整理不能替代獸醫診斷。
 
@@ -33,13 +33,15 @@ Agent 使用 `npm ci`、`npm test`、`npm run build`；Node 24 以上。Tests �
 ## 現行限制
 
 - 原生 Sites 私人部署與個人 MCP 已有實測；合成照片經 PWA 上傳、MCP 取圖、AI 辨識、人確認後寫入及 PWA 讀回已驗證。此次 AI／插件操作環境為 Codex，不能代替手機 ChatGPT 原生客戶端驗收。
-- 真實第二帳號隔離、原生 Voice、Android 安裝及 teardown 證據仍須逐項驗收；SmallGreen legacy conformance 對 Sites manifest 的相容性仍未解決。
+- 真實第二帳號隔離、手機 ChatGPT、原生 Voice、Android 安裝及 teardown 依[本人操作驗收清單](docs/USER_ACCEPTANCE_CHECKLIST.md)逐項驗收。SAP-1／SAP-2／CON-3 的 Sites-only 靜態支援已補入檢查器；結果與版本另存 evidence，不能替代上述平台實測或完整 SmallGreen Ready。
 - 每張圖片上限 5 MB；完整備份上限 20 MB，附件原始總量 10 MB，至多 1000 筆紀錄、100 張附件及 5000 筆稽核。超限時明確拒絕，不截斷資料。請在達到上限前備份。
 - 還原只接受空白帳號，操作期間請關閉其他分頁，避免同時寫入。資料刪除與平台 Site 刪除是不同步驟。
 - 單筆刪除保留稽核中的舊內容；要完全抹除需使用「清除我的全部資料」。
 - 不做定時背景任務或靜默同步；每次寫入失敗立即回報。
 
 最新分項結果見 [2026-11-22 驗收進度](evidence/2026-11-22-final-acceptance-v2.json)，含取得明確同意後的資料清除及含原圖備份還原；6 筆合成紀錄、1 張照片、7 筆稽核全部比對一致。歷史報告保留當時狀態；版本鎖定安裝契約的驗收要求適用於每個新建個人 Site，不能用本次實例的成功代替另一個帳號驗收。
+
+[2026-11-23 Sites 靜態檢查更新](evidence/2026-11-23-sites-conformance.json)取代前一份報告中的 SAP-1／SAP-2／CON-3 不相容結果。Spec 與 conformance 皆以完整 commit 鎖定，應用 runtime 未變更；手機、Voice、第二帳號與 teardown 仍待本人操作。
 
 ## 來源與授權
 

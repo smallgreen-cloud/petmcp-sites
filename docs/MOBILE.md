@@ -1,5 +1,7 @@
 # 手機首次設定
 
+所有需要本人操作的正式驗收項目，統一填寫 [本人操作驗收清單](USER_ACCEPTANCE_CHECKLIST.md)；本頁為首次設定流程。
+
 1. 在具有 Sites 能力的 ChatGPT 帳號完成建立與個人插件授權。保存回傳的**自己的 Site URL**。
 2. 用 Android Chrome 開啟該 URL，使用同一 ChatGPT 帳號登入。不是安裝 SmallGreen 官網，也不是把共用 PWA 指向你的資料。
 3. Chrome 選單選「安裝應用程式」或「新增至主畫面」。實際名稱依裝置版本而異；看不到時記錄瀏覽器／版本，不宣稱安裝通過。

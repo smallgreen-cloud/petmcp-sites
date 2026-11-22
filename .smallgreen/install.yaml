@@ -110,7 +110,6 @@ teardown:
   document: docs/MAINTENANCE.md
   requires_data_export: true
 blockers:
-- 尚未完成 Sites 個人 plugin 真實帳號端到端寫讀及第二帳號隔離
-- 照片到 ChatGPT Vision、原生 Voice、Android Chrome PWA 實機驗收待完成
+- 手機 ChatGPT 圖片工具交接、原生 Voice、Android Chrome PWA 實機驗收待完成
+- 第二真實帳號的私人受眾與 owner 資料隔離尚待實測
 - Sites teardown 與受管資源 zero-diff 待平台能力與使用者明確移除同意
-- SmallGreen legacy Wrangler profile/secret scanner 尚未支援此 Sites-only 資源邊界

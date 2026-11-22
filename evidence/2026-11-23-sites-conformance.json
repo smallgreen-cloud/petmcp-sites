@@ -1,0 +1,124 @@
+{
+  "report_type": "sites_only_static_conformance_update_not_ready",
+  "observed_date": "2026-11-23",
+  "supersedes_only": "legacy SAP-1/SAP-2/CON-3 failures in 2026-11-22-final-acceptance-v2.json",
+  "runtime_source_commit": "ed20ee8fbda440a7f1b44007528394b726ae4f62",
+  "runtime_change": false,
+  "spec_commit": "05b98c23f307ed90814a2927e38fb3868bc887b5",
+  "conformance_commit": "e9ca52b9938e5b144ec8c382083470b4e58b260e",
+  "spec_pr": "https://github.com/smallgreen-cloud/spec/pull/25",
+  "conformance_pr": "https://github.com/smallgreen-cloud/conformance/pull/1",
+  "conformance_pr_ci": "https://github.com/smallgreen-cloud/conformance/actions/runs/45084210286",
+  "local_python": "3.14.5",
+  "checks": {
+    "check_contract": {
+      "title": "contract (CON-1/2/4/5/6)",
+      "result": "pass",
+      "checks": [
+        {
+          "id": "CON-1:profile",
+          "result": "pass"
+        },
+        {
+          "id": "CON-1:acceptance",
+          "result": "pass"
+        },
+        {
+          "id": "CON-1:maintenance",
+          "result": "pass"
+        },
+        {
+          "id": "CON-6",
+          "result": "skipped"
+        }
+      ]
+    },
+    "check_profile": {
+      "title": "profile 靜態判定（small-app）",
+      "result": "pass",
+      "checks": [
+        {
+          "id": "SAP-1",
+          "result": "pass",
+          "reasons": [
+            "Sites 安裝契約與 .openai/hosting.json schema 通過；僅靜態來源驗證"
+          ]
+        },
+        {
+          "id": "SAP-2",
+          "result": "pass",
+          "reasons": [
+            "僅 Sites 受管資源；非 Cloudflare 免費額度保證"
+          ]
+        },
+        {
+          "id": "SAP-6",
+          "result": "skipped",
+          "reasons": [
+            "無 GITHUB_REPOSITORY/GITHUB_TOKEN，於 CI 外執行時跳過"
+          ]
+        },
+        {
+          "id": "SAP-4",
+          "result": "pass"
+        }
+      ]
+    },
+    "check_secrets_manifest": {
+      "title": "secrets manifest 一致性 (CON-3)",
+      "result": "pass",
+      "checks": [
+        {
+          "id": "CON-3",
+          "result": "pass",
+          "reasons": [
+            "引用 3 個名稱，全數已宣告"
+          ]
+        }
+      ]
+    }
+  },
+  "contract_sha256": {
+    ".openai/hosting.json": "17a32b2c30298b0fe94d27b74a897b187384a46e6705d4eeb960ada505655308",
+    ".smallgreen/profile.yaml": "5fd49661aec5d438a23d53b7080cba2f6721c1e73d6242a4cfa11d34b66a9fef",
+    ".smallgreen/install.yaml": "837a2ad9ef4bfc259eeb2be45a02bec05f37699a9db102a93c8ec4dd6c4f5486"
+  },
+  "regression_tests": {
+    "passed": 25,
+    "red_observed": [
+      "Valid Sites rejected by Wrangler-only SAP-1/2; CON-3 lacked Sites declarations",
+      "CI checker fixtures were wrongly classified as independent source configurations"
+    ],
+    "coverage": {
+      "scope": [
+        "sg_sites.py",
+        "check_profile.py",
+        "check_secrets_manifest.py"
+      ],
+      "line_percent": 96.28,
+      "branch_percent": 87.86,
+      "combined_percent": 93.74
+    },
+    "guardrails": [
+      "malformed/missing/unsupported manifests fail",
+      "external infrastructure and source Wrangler fail",
+      "resource inventories and binding names agree",
+      "undeclared runtime secrets fail",
+      "preview CONNECTORS exception is fingerprint/path scoped",
+      "legacy Wrangler fixtures remain tested"
+    ]
+  },
+  "external_infrastructure": [],
+  "site_redeployment": "not needed: application runtime and hosting manifest unchanged",
+  "status": "candidate",
+  "smallgreen_ready": false,
+  "scope_limit": "Static SAP-1/SAP-2/CON-3 and contract schemas only; not full conformance, native deployment smoke or live platform acceptance. Local SAP-6 is skipped; CI checks the public repository license.",
+  "owner_checklist": "docs/USER_ACCEPTANCE_CHECKLIST.md",
+  "remaining": [
+    "mobile ChatGPT photo tools",
+    "native Voice",
+    "physical Android PWA lifecycle and permissions",
+    "second real account audience and owner isolation",
+    "explicitly authorised test-Site teardown and observable managed-resource zero-diff"
+  ]
+}
