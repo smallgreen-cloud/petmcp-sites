@@ -21,13 +21,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: smallgreen-cloud/spec
-          ref: cafaf20db549920eb23c9cfd808268bbbca74668
+          ref: 05b98c23f307ed90814a2927e38fb3868bc887b5
           path: .spec
+      - uses: actions/checkout@v4
+        with:
+          repository: smallgreen-cloud/conformance
+          ref: e9ca52b9938e5b144ec8c382083470b4e58b260e
+          path: .conformance
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: pip install PyYAML jsonschema
       - run: python scripts/check-contracts.py --spec .spec
+      - name: SmallGreen contract schemas
+        run: python .conformance/scripts/check_contract.py --spec .spec --repo .
+      - name: Sites-only profile (SAP-1 / SAP-2)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python .conformance/scripts/check_profile.py --spec .spec --repo .
+      - name: Sites runtime bindings and secrets (CON-3)
+        run: python .conformance/scripts/check_secrets_manifest.py --spec .spec --repo .
       - name: Preserve verification artifacts
         if: always()
         uses: actions/upload-artifact@v4
